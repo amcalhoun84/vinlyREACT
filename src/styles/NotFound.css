@@ -1,0 +1,11 @@
+.NotFound {
+  background-color: #FFC47D;
+  padding: 100px 50px;
+  text-align: center;
+}
+
+.NotFound h3 {
+  color: #773366;
+  font-size: 8em;
+  font-weight: 800;
+}

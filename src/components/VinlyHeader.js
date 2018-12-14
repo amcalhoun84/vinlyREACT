@@ -10,9 +10,6 @@ class Header extends Component {
           <p>Welcome to <code>Vin.ly</code>!</p>
           <p> How can we help today? </p>
         </header>
-        <div text-align="center">
-          <a href="beer">Beer </a> | <a href="wine">Wine</a> | <a href="food">Food</a> | <a href="food-to-wine">Food To Wine</a> | <a href="food-to-beer">Food to Beer</a> | <a href="wine-to-food">Wine To Food</a> | <a href="beer-to-food">Beer to Food</a>
-        </div>
       </div>
 
     );

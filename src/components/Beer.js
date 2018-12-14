@@ -15,6 +15,7 @@ export default class Beer extends Component {
     fetch('/api/v1/beer/', {
       method: 'GET',
     }).then(function (response) {
+      console.log(response);
       if (response.status >= 400) {
         throw new Error("Bad response from server.");
       }

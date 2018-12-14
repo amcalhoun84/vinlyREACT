@@ -1,0 +1,37 @@
+.Login {
+
+
+  padding: 60px 0;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  background-color: #FFC47D;
+
+
+
+}
+
+.Login form {
+  margin: 0 auto;
+  max-width: 480px;
+  padding: 40px;
+  border: 3px solid #736;
+  background-color: white;
+};
+
+.loginBox {
+  height: 25px;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+.btn-submit {
+
+  height: 35px;
+  width: 180px;
+  font-size: 14px;
+  background-color: #FFC47D;
+  color: #736;
+  border: 1px solid black;
+}
