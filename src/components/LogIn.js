@@ -73,9 +73,9 @@ export default class LogIn extends Component {
 
       .then(data => {
         console.log("User: ", data);
-
+        self.setState({ isLoggedIn: true });
+        console.log(self.state);
       });
-
   };
 
   render() {

@@ -10,12 +10,12 @@ import NaviBar from './NaviBar';
 import Routes from './Routes';
 
 
-class App extends Component {
+export default class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      beer_results: {}
+      isLoggedIn: false
     }
   }
   render() {
@@ -26,5 +26,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
