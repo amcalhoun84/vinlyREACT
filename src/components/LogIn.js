@@ -119,7 +119,7 @@ export default class LogIn extends Component {
           >Login
           </Button>
           <br /><br />
-          {this.state.msg}
+          <p>{this.state.msg}</p>
         </form>
 
 

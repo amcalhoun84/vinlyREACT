@@ -7,8 +7,8 @@ export default class BeerToFood extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      beer_pair: 'Ale',
-      current_beer: 'Ale',
+      beer_pair: 'American Lager',
+      current_beer: 'American Lager',
       bp_results: [],
       beers: []
     };
@@ -22,7 +22,7 @@ export default class BeerToFood extends Component {
       method: 'GET'
     };
 
-    fetch('/api/v1/beer/', {
+    fetch('/api/v1/util/beer_types', {
       method: 'GET'
     }).then(response => {
       if (response.status >= 400) {
@@ -101,11 +101,11 @@ export default class BeerToFood extends Component {
           <thead>
           </thead>
           <tbody>
-            {this.state.bp_results.map(food =>
+            {/* {this.state.bp_results.map(food =>
               <tr key={food.food_id}>
                 <td padding='10px'>{food.food_type}</td>
               </tr>
-            )}
+            )} */}
           </tbody>
         </table >
       </div >

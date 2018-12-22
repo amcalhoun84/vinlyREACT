@@ -25,12 +25,13 @@ export default class NaviBar extends Component {
               <NavItem href="/wine">Wine</NavItem>
               <NavItem href="/beer">Beer</NavItem>
               <NavItem href="/food">Food</NavItem>
+              <NavItem href="/cheese">Cheese</NavItem>
               <NavItem href="/wine-to-food">Wine to Food</NavItem>
               <NavItem href="/beer-to-food">Beer to Food</NavItem>
               <NavItem href="/food-to-wine">Food to Wine</NavItem>
               <NavItem href="/food-to-beer">Food to Beer</NavItem>
-              {/*     <NavItem href="/login">Login</NavItem>
-              <NavItem href="/signup">Signup</NavItem> */}
+              <NavItem href="/login">Login</NavItem>
+              <NavItem href="/signup">Signup</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -12,7 +12,7 @@ export default class Wine extends Component {
   }
   componentDidMount() {
     let self = this;
-    fetch('/api/v1/wine/', {
+    fetch('/api/v1/util/varietals', {
       method: 'GET',
     }).then(function (response) {
       console.log(response);
@@ -28,15 +28,15 @@ export default class Wine extends Component {
   }
 
   render() {
-    console.log("Rendered.");
     return (
       <div className="container">
         <div className="WineList">
+          <h2>The Myriad Wine Varietals</h2>
+          <p>There are almost a hundred different types of varietals. The 18 Noble Grapes are the most commonly seen, but this list is a fairly comprehensive list of the various types of grape that go into wines.</p>
           <table className="table table-hover">
             <thead>
               <tr>
                 <th>Wine Varietal</th>
-                <th>Body</th>
                 <th>Description</th>
               </tr>
             </thead>
@@ -44,7 +44,6 @@ export default class Wine extends Component {
               {this.state.wine_results.map(wine =>
                 <tr key={wine.beer_id}>
                   <td padding='10px'>{wine.varietal}</td>
-                  <td padding='10px'>{wine.body}</td>
                   <td padding='10px'>{wine.description}</td>
                 </tr>
               )}

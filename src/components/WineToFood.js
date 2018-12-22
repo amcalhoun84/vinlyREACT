@@ -22,7 +22,7 @@ export default class WineToFood extends Component {
       method: 'GET'
     };
 
-    fetch('/api/v1/wine/', {
+    fetch('/api/v1/util/varietals', {
       method: 'GET'
     }).then(response => {
       if (response.status >= 400) {
@@ -100,6 +100,8 @@ export default class WineToFood extends Component {
         <h3>Food Pairings for: {this.state.current_wine} </h3>
         <table className="table table-hover">
           <thead>
+            <th>Food Type</th>
+            <th>Description</th>
           </thead>
           <tbody>
             {this.state.wp_results.map(food =>
