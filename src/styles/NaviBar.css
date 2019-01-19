@@ -1,0 +1,11 @@
+.NaviBar {
+
+  background-color: #FFC47D;
+  color: #736;
+  text-align: center;
+}
+
+.NaviBar .container {
+  background-color: #FFC47D;
+  color: #736;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Auth } from 'aws-amplify';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import '../styles/LogIn.css';
@@ -23,60 +24,20 @@ export default class LogIn extends Component {
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     let self = this;
     let username = this.state.username;
     let password = this.state.password;
     e.preventDefault();
-    /* fetch('/api/v1/user/login/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    }).then(function (response) {
-      if (response.status >= 400) {
-        // throw new Error("Bad response from server");
-        self.setState({
-          msg: "Can't find user"
-        })
-        return;
-      }
 
-      console.log("SUCCESS!");
-      self.setState({
-        msg: "User found. We're almost there!"
-      })
-    }).then(user => {
-      console.log(user);
-
-    }); */
-
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    };
-
-    console.log(requestOptions.body);
-
-    return fetch('/api/v1/user/login/', requestOptions)
-      .then(response => {
-        console.log(response);
-        if (response.status >= 400) {
-          self.setState({ msg: "User not found " })
-          return;
-        }
-        else {
-          self.setState({ msg: "SUCCESS!" });
-        }
-
-      })
-
-      .then(data => {
-        console.log("User: ", data);
-        self.setState({ isLoggedIn: true });
-        console.log(self.state);
-      });
+    try {
+      await Auth.signIn(this.state.username, this.state.password);
+      console.log("Logged in");
+    } catch (err) {
+      console.log("Error caught", err.message);
+    }
   };
+
 
   render() {
     return (

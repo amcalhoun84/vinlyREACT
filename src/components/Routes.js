@@ -21,8 +21,9 @@ export default () =>
     <Route path="/beer" exact component={Beer} />
     <Route path="/food" exact component={Food} />
     <Route path="/cheese" exact component={Cheese} />
-    <Route path="/wine-to-food" exact component={WineToFood} />
-    <Route path="/beer-to-food" exact component={BeerToFood} />
+    {//<Route path="/wine-to-food" exact component={WineToFood} />
+      // <Route path="/beer-to-food" exact component={BeerToFood} />
+    }
     <Route path="/food-to-wine" exact component={FoodToWine} />
     <Route path="/food-to-beer" exact component={FoodToBeer} />
     <Route path="/login" exact component={LogIn} />

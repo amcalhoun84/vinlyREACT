@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-//import '../styles/WineToFood.css';
 
+import React, { Component } from 'react';
 import { Button, DropdownButton, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+//import '../styles/WineToFood.css';
+import { FoodNote } from '../helpers/wineNotes.js';
 
 export default class FoodToWine extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      food_pair: 'Pork',
-      current_food: 'Pork',
+      food_pair: '',
+      current_food: '',
       fp_results: [],
       foods: []
     };
@@ -22,7 +23,7 @@ export default class FoodToWine extends Component {
       method: 'GET'
     };
 
-    fetch('/api/v1/food/', {
+    fetch('/api/v1/util/food_types', {
       method: 'GET'
     }).then(response => {
       if (response.status >= 400) {
@@ -34,16 +35,7 @@ export default class FoodToWine extends Component {
       self.setState({ foods: data });
     });
 
-    return fetch('/api/v1/food/match/wine/' + fp, requestOptions)
-      .then(response => {
-        if (response.status >= 400) {
-          console.log("Pairing not found.");
-        }
-        return response.json();
-      }).then(data => {
-        self.setState({ fp_results: data });
-      });
-  }
+  };
 
   handleChange = e => {
     this.setState({
@@ -52,11 +44,13 @@ export default class FoodToWine extends Component {
   }
 
   handleSubmit = e => {
+    console.log(this.state);
+    console.log(this.props);
     let self = this;
     let fp = this.state.food_pair;
     e.preventDefault();
 
-    fetch('/api/v1/food/match/wine/' + fp, {
+    fetch('/api/v1/match/wine/' + fp, {
       method: 'GET',
     }).then(function (response) {
       if (response.status >= 400) {
@@ -73,7 +67,8 @@ export default class FoodToWine extends Component {
   }
 
   render() {
-    let foodOptions = this.state.foods.map((food) =>
+    const current_food = this.state.current_food;
+    let foodOptions = this.state.foods.map(food =>
       <option key={food.food_type}>{food.food_type}</option>
     );
 
@@ -96,6 +91,8 @@ export default class FoodToWine extends Component {
 
         </form>
 
+        <FoodNote currFood={current_food} />
+
         <h3>Food Pairings for: {this.state.current_food} </h3>
         <table className="table table-hover">
           <thead>
@@ -111,5 +108,5 @@ export default class FoodToWine extends Component {
       </div >
 
     );
-  }
+  };
 };

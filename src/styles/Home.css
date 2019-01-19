@@ -3,9 +3,22 @@
   text-align: center;
   background: #FFC47D;
   color: #773366;
+  height: 720px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.Home .lander p {
+  padding: 20px;
 }
 
 .Home .lander h1 {
   font-family: "Open Sans", san-serif;
+  font-weight: 600;
+}
+
+.Home .lander h2 {
+  font-family: "Open Sans", san-serif;
+  font-size: 32px;
   font-weight: 600;
 }
