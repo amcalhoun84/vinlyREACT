@@ -99,7 +99,6 @@ export default class Register extends Component {
             <ControlLabel>Country </ControlLabel>
             <br />
             <CountryDropdown
-              value={country}
               value={this.state.country}
               onChange={(val) => this.selectCountry(val)} />
             <br />
