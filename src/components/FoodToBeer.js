@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-//import '../styles/WineToFood.css';
 
+import React, { Component } from 'react';
 import { Button, DropdownButton, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+//import '../styles/BeerToFood.css';
+import { FoodNote } from '../helpers/beerNotes.js';
 
 export default class FoodToBeer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      food_pair: 'Pork',
-      current_food: 'Pork',
-      fp_results: [],
+      food_pair: 'Legumes',
+      current_food: '',
+      fbp_results: [],
       foods: []
     };
   }
@@ -17,12 +18,12 @@ export default class FoodToBeer extends Component {
   // Testicus!
   componentDidMount() {
     let self = this;
-    let fp = this.state.food_pair;
+    let fbp = this.state.food_pair;
     const requestOptions = {
       method: 'GET'
     };
 
-    fetch('/api/v1/food/', {
+    fetch('/api/v1/util/food_types', {
       method: 'GET'
     }).then(response => {
       if (response.status >= 400) {
@@ -34,16 +35,7 @@ export default class FoodToBeer extends Component {
       self.setState({ foods: data });
     });
 
-    return fetch('/api/v1/food/match/beer/' + fp, requestOptions)
-      .then(response => {
-        if (response.status >= 400) {
-          console.log("Pairing not found.");
-        }
-        return response.json();
-      }).then(data => {
-        self.setState({ fp_results: data });
-      });
-  }
+  };
 
   handleChange = e => {
     this.setState({
@@ -52,11 +44,13 @@ export default class FoodToBeer extends Component {
   }
 
   handleSubmit = e => {
+    console.log(this.state);
+    console.log(this.props);
     let self = this;
-    let fp = this.state.food_pair;
+    let fbp = this.state.food_pair;
     e.preventDefault();
 
-    fetch('/api/v1/food/match/beer/' + fp, {
+    fetch('/api/v1/match/beer/' + fbp, {
       method: 'GET',
     }).then(function (response) {
       if (response.status >= 400) {
@@ -64,23 +58,24 @@ export default class FoodToBeer extends Component {
       }
       return response.json();
     }).then(function (data) {
-      console.log(data)
+      console.log(data);
       self.setState({
-        fp_results: data,
-        current_food: fp
+        fbp_results: data,
+        current_food: fbp
       });
     });
   }
 
   render() {
-    let foodOptions = this.state.foods.map((food) =>
+    const current_food = this.state.current_food;
+    let foodOptions = this.state.foods.map(food =>
       <option key={food.food_type}>{food.food_type}</option>
     );
 
     return (
       <div className="foodtobeerpairing" >
         <form onSubmit={this.handleSubmit}>
-          <select id="beers" onChange={this.handleChange.bind(this)} value={this.state.food_pair}>
+          <select id="beer" onChange={this.handleChange.bind(this)} value={this.state.food_pair}>
             {foodOptions}
           </select>
           <br /><br />
@@ -96,12 +91,14 @@ export default class FoodToBeer extends Component {
 
         </form>
 
+        <FoodNote currFood={current_food} />
+
         <h3>Food Pairings for: {this.state.current_food} </h3>
         <table className="table table-hover">
           <thead>
           </thead>
           <tbody>
-            {this.state.fp_results.map(beer =>
+            {this.state.fbp_results.map(beer =>
               <tr key={beer.beer_id}>
                 <td padding='10px'>{beer.beer_type}</td>
               </tr>
@@ -111,5 +108,5 @@ export default class FoodToBeer extends Component {
       </div >
 
     );
-  }
+  };
 };

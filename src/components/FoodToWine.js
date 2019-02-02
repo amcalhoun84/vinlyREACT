@@ -8,7 +8,7 @@ export default class FoodToWine extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      food_pair: '',
+      food_pair: 'Legumes',
       current_food: '',
       fp_results: [],
       foods: []
